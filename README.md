@@ -2,6 +2,8 @@
 
 Sync Discord whit Minecraft
 
+Tested whit PaperMC 284
+
 # Installing
 
 - Download the Plugin
