@@ -1,0 +1,7 @@
+prefix: "§2[§6MineCord§2]§f"
+discord:
+    token: "replace whit token"
+    roles:
+        addCMD: "say %player% added group %group%"
+        removeCMD: "say %player% removed group %group%"
+        #516365112135909386: "Member"
