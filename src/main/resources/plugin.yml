@@ -4,7 +4,7 @@ description: Connect Discord an Minecraft
 author: Speidy674
 website: www.speidy674.de
 depend: []
-api-version: 1.15
+api-version: 1.16
 prefix: MineCord
 
 main: de.speidy674.MineCord.Main

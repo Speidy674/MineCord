@@ -77,6 +77,24 @@ public class Main extends JavaPlugin {
 
 		try {
 			jda = jdaBuilder.build();
+			
+			getCommand("verify").setExecutor(new cmdVerify(this, jda));
+			
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					tellConsole("[MineCord] Sync Player Roles");
+					for(@NotNull OfflinePlayer player : getServer().getOfflinePlayers()){
+						PlayerCFG pcfg = new PlayerCFG(plugin, player, player.getUniqueId());
+						if(pcfg.isVerifyed()) {
+							SyncPlayerRoles(player, pcfg.getDiscordID());
+						}
+					}
+					
+				}
+			}.runTaskLater(this, 6000);
+			
 		} catch (LoginException e) {
 			e.printStackTrace();
 
@@ -84,22 +102,7 @@ public class Main extends JavaPlugin {
 			this.getPluginLoader().disablePlugin(this);
 		}
 
-		getCommand("verify").setExecutor(new cmdVerify(this, jda));
-		
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				tellConsole("[MineCord] Sync Player Roles");
-				for(@NotNull OfflinePlayer player : getServer().getOfflinePlayers()){
-					PlayerCFG pcfg = new PlayerCFG(plugin, player, player.getUniqueId());
-					if(pcfg.isVerifyed()) {
-						SyncPlayerRoles(player, pcfg.getDiscordID());
-					}
-				}
-				
-			}
-		}.runTaskLater(this, 6000);
+
 		
 
 
@@ -107,7 +110,9 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		jda.shutdown();
+		if (jda != null) {
+			jda.shutdown();
+		}
 	}
 
 	public void tellConsole(String message) {
