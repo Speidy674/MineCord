@@ -48,6 +48,9 @@ public class Main extends JavaPlugin {
 		this.saveDefaultConfig();
 		messages = new Messages();
 
+
+		getCommand("verify").setExecutor(new cmdVerify(this));
+		
 		// Start DiscordBot
 
 		CommandClientBuilder cmdBuilder = new CommandClientBuilder();
@@ -78,7 +81,6 @@ public class Main extends JavaPlugin {
 		try {
 			jda = jdaBuilder.build();
 			
-			getCommand("verify").setExecutor(new cmdVerify(this, jda));
 			
 			new BukkitRunnable() {
 				
@@ -96,7 +98,7 @@ public class Main extends JavaPlugin {
 			}.runTaskLater(this, 6000);
 			
 		} catch (LoginException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 
 			tellConsole("error starting DiscordBot");
 			this.getPluginLoader().disablePlugin(this);

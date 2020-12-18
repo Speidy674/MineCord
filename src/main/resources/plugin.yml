@@ -1,5 +1,5 @@
 name: MineCord
-version: 1.0
+version: 1.2
 description: Connect Discord an Minecraft
 author: Speidy674
 website: www.speidy674.de
@@ -13,5 +13,5 @@ permissions: {}
 
 commands:
  verify:
-  usage: /<command> <token>
   description: verify command
+  usage: "usage: /<command> <token>"
